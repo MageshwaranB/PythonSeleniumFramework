@@ -5,7 +5,7 @@ from selenium import webdriver
 
 from pom.pages.base_page import BasePage
 from pom.pages.login_page import LoginPage
-
+from pom.pages.page_product import ProductPage
 
 
 def pytest_addoption(parser):
@@ -32,6 +32,7 @@ def get_driver(request, get_browser):
     loginPage variable we 're able to access the LoginPage class properties and functions
     """
     request.cls.loginPage=LoginPage(_driver)
+    request.cls.productPage=ProductPage(_driver)
     request.cls.driver = _driver  # common driver
     yield request.cls.driver
     time.sleep(2)
