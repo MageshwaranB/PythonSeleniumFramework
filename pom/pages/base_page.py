@@ -1,6 +1,7 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -29,3 +30,11 @@ class BasePage:
         return self.wait.until(expected_conditions.presence_of_all_elements_located(locator))
     def get_elements_count(self,locator:tuple):
         return len(self.get_elements(locator))
+
+    def get_element(self,locator:tuple):
+        return self.wait.until(expected_conditions.presence_of_element_located(locator))
+
+    def select_item_by_text(self,locator:tuple,option: str):
+        select=Select(self.get_element(locator))
+        select.select_by_visible_text(option)
+
